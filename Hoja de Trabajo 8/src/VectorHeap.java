@@ -1,15 +1,20 @@
 import java.util.Vector;
 
+    /** Clase creada por Juan Carlos Bajan
+     * Vector Heap
+    * **/
+
 public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
 
     protected Vector<E> data; // the data, kept in heap order
 
+        /**Constructor**/
     public VectorHeap()
     // post: constructs a new priority queue
     {
         data = new Vector<E>();
     }
-
+        /**Retorna el indice del padre**/
     protected static int parent(int i)
     // pre: 0 <= i < size
     // post: returns parent of node at location i
@@ -17,6 +22,7 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
         return (i - 1) / 2;
     }
 
+        /**Retorna el indice del hijo izquierdo**/
     protected static int left(int i)
     // pre: 0 <= i < size
     // post: returns index of left child of node at location i
@@ -24,6 +30,7 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
         return 2 * i + 1;
     }
 
+        /**Retorna el indice del hijo derecho**/
     protected static int right(int i)
     // pre: 0 <= i < size
     // post: returns index of right child of node at location i
@@ -31,6 +38,7 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
         return (2 * i + 1) + 1;
     }
 
+        /**Reordena el Heap**/
     protected void percolateUp(int leaf)
     // pre: 0 <= leaf < size
     // post: moves node at index leaf up to appropriate position
@@ -46,6 +54,7 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
         data.set(leaf, value);
     }
 
+        /**Anade un valor y luego ordena el Heap**/
     public void add(E value)
     // pre: value is non-null comparable
     // post: value is added to priority queue
@@ -54,6 +63,7 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
         percolateUp(data.size() - 1);
     }
 
+        /**Funcion para bajar un valor en su jerarquia**/
     protected void pushDownRoot(int root)
     // pre: 0 <= root < size
     // post: moves node at index root down
@@ -85,6 +95,7 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
         }
     }
 
+        /**Elimina el primer valor del heap**/
     public E remove()
     // pre: !isEmpty()
     // post: returns and removes minimum value from queue
@@ -96,6 +107,8 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
         return minVal;
     }
 
+
+        /**Retorna el primer valor, en otras estructuras se conoce como peek**/
     @Override
     public E getFirst() {
         if (data.isEmpty()){
@@ -105,6 +118,7 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
         }
     }
 
+        /**Imprime los valores del heap ordenadamente**/
     public void print(){
         int initialSize = data.size();
         for (int i = 0; i<initialSize;i++){
